@@ -17,9 +17,9 @@ namespace FreshMvvm
             FreshIOC.Container.Register<IFreshNavigationService> (this);
         }
 
-        public virtual Page AddTab<T> (string title, string icon, object data = null) where T : FreshBasePageModel
+        public virtual async Task<Page> AddTab<T> (string title, string icon, object data = null) where T : FreshBasePageModel
         {
-            var page = FreshPageModelResolver.ResolvePageModel<T> (data);
+            var page = await FreshPageModelResolver.ResolvePageModel<T> (data);
             var navigationContainer = CreateContainerPage (page);
             navigationContainer.Title = title;
             if (!string.IsNullOrWhiteSpace(icon))

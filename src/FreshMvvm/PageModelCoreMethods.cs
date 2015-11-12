@@ -56,7 +56,7 @@ namespace FreshMvvm
 
         async Task PushPageModel(FreshBasePageModel pageModel, object data, bool modal = false)
         {
-            var page = FreshPageModelResolver.ResolvePageModel(data, pageModel);
+            var page = await FreshPageModelResolver.ResolvePageModel(data, pageModel);
 
             pageModel.PreviousPageModel = _pageModel;
 

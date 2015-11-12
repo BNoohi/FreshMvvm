@@ -30,9 +30,9 @@ namespace FreshMvvm
             FreshIOC.Container.Register<IFreshNavigationService> (this);
         }
 
-        public virtual void AddPage<T> (string title, object data = null) where T : FreshBasePageModel
+        public virtual async Task AddPage<T> (string title, object data = null) where T : FreshBasePageModel
         {
-            var page = FreshPageModelResolver.ResolvePageModel<T> (data);
+            var page = await FreshPageModelResolver.ResolvePageModel<T> (data);
             var navigationContainer = CreateContainerPage (page);
             _pages.Add (title, navigationContainer);
             _pageNames.Add (title);
