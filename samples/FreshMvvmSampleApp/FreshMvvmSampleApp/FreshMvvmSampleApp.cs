@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using System.Collections.Generic;
 using FreshMvvm;
@@ -14,27 +15,27 @@ namespace FreshMvvmSampleApp
             MainPage = new NavigationPage (new LaunchPage (this));
         }
 
-        public void LoadBasicNav ()
+        public async Task LoadBasicNav ()
         {
-            var page = FreshPageModelResolver.ResolvePageModel<MainMenuPageModel> ();
+            var page = await FreshPageModelResolver.ResolvePageModel<MainMenuPageModel> ();
             var basicNavContainer = new FreshNavigationContainer (page);
             MainPage = basicNavContainer;
         }
 
-        public void LoadMasterDetail ()
+        public async Task LoadMasterDetail ()
         {
             var masterDetailNav = new FreshMasterDetailNavigationContainer ();
             masterDetailNav.Init ("Menu", "Menu.png");
-            masterDetailNav.AddPage<ContactListPageModel> ("Contacts", null);
-            masterDetailNav.AddPage<QuoteListPageModel> ("Quotes", null);
+            await masterDetailNav.AddPage<ContactListPageModel> ("Contacts", null);
+            await masterDetailNav.AddPage<QuoteListPageModel> ("Quotes", null);
             MainPage = masterDetailNav;
         }
 
-        public void LoadTabbedNav ()
+        public async Task LoadTabbedNav ()
         {
             var tabbedNavigation = new FreshTabbedNavigationContainer ();
-            tabbedNavigation.AddTab<ContactListPageModel> ("Contacts", "contacts.png", null);
-            tabbedNavigation.AddTab<QuoteListPageModel> ("Quotes", "document.png", null);
+            await tabbedNavigation.AddTab<ContactListPageModel> ("Contacts", "contacts.png", null);
+            await tabbedNavigation.AddTab<QuoteListPageModel> ("Quotes", "document.png", null);
             MainPage = tabbedNavigation;
         }
 

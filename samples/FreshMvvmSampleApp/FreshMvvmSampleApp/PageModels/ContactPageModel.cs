@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using System.Threading.Tasks;
+using Xamarin.Forms;
 using PropertyChanged;
 using FreshMvvm;
 
@@ -16,7 +17,7 @@ namespace FreshMvvmSampleApp
 
         public Contact Contact { get; set; }
 
-        public override void Init (object initData)
+        public override async Task Init(object initData)
         {
             if (initData != null) {
                 Contact = (Contact)initData;

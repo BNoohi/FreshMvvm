@@ -16,16 +16,16 @@ namespace FreshMvvmSampleApp
 
 		public CustomImplementedNav ()
 		{	
-			SetupTabbedPage ();
+			SetupTabbedPage ().Wait();
 			CreateMenuPage ("Menu");
 			RegisterNavigation ();
 		}
 
-		void SetupTabbedPage()
+	    async Task SetupTabbedPage()
 		{
 			_tabbedNavigationPage = new FreshTabbedNavigationContainer ();
-			_contactsPage = _tabbedNavigationPage.AddTab<ContactListPageModel> ("Contacts", "contacts.png");
-			_quotesPage = _tabbedNavigationPage.AddTab<QuoteListPageModel> ("Quotes", "document.png");
+			_contactsPage = await _tabbedNavigationPage.AddTab<ContactListPageModel> ("Contacts", "contacts.png");
+            _quotesPage = await _tabbedNavigationPage.AddTab<QuoteListPageModel>("Quotes", "document.png");
 			this.Detail = _tabbedNavigationPage;
 		}
 
@@ -53,7 +53,7 @@ namespace FreshMvvmSampleApp
 					_tabbedNavigationPage.CurrentPage = _quotesPage;
 					break;
 				case "Modal Demo":
-                    var modalPage = FreshPageModelResolver.ResolvePageModel<ModalPageModel>();
+                    var modalPage = await FreshPageModelResolver.ResolvePageModel<ModalPageModel>();
 					await PushPage(modalPage, null, true);
 					break;
 				default:

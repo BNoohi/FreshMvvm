@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using System.Threading.Tasks;
+using Xamarin.Forms;
 using PropertyChanged;
 using FreshMvvm;
 
@@ -16,7 +17,7 @@ namespace FreshMvvmSampleApp
             _databaseService = databaseService;
         }
 
-        public override void Init (object initData)
+        public override async Task Init(object initData)
         {			
             Quote = initData as Quote;
             if (Quote == null)

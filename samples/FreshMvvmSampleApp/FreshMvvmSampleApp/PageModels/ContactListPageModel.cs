@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using PropertyChanged;
 using System.Collections.ObjectModel;
@@ -18,7 +19,7 @@ namespace FreshMvvmSampleApp
 
         public ObservableCollection<Contact> Contacts { get; set; }
 
-        public override void Init (object initData)
+        public override async Task Init (object initData)
         {
             Contacts = new ObservableCollection<Contact> (_databaseService.GetContacts ());
         }

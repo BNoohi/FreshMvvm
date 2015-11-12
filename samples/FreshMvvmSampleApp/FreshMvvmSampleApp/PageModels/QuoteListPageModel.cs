@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using FreshMvvm;
 using PropertyChanged;
@@ -17,7 +18,7 @@ namespace FreshMvvmSampleApp
 
         public ObservableCollection<Quote> Quotes { get; set; }
 
-        public override void Init (object initData)
+        public override async Task Init(object initData)
         {
             Quotes = new ObservableCollection<Quote> (_databaseService.GetQuotes ());
         }
